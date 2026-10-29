@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Outfit, Montserrat } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Preloader from "@/components/Preloader";
@@ -10,8 +10,14 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
-  title: "Renoux | Scrollytelling Parfum",
+  title: "RENOUX - Essence of Sophistication",
   description: "Experience the essence of Renoux.",
 };
 
@@ -21,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} h-full antialiased dark`}>
+    <html lang="en" className={`${outfit.variable} ${montserrat.variable} h-full antialiased dark`}>
       <body className="min-h-full flex flex-col font-sans bg-black text-white overflow-x-hidden selection:bg-white/20">
         <SmoothScroll>
           <Preloader>

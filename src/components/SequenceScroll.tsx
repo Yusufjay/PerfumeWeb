@@ -120,7 +120,7 @@ export default function SequenceScroll() {
             style={{ opacity: text1Opacity, y: text1Y }} 
             className="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-8 pointer-events-none"
         >
-            <h2 className="text-5xl sm:text-6xl md:text-9xl font-light uppercase tracking-[0.2em] mb-4 drop-shadow-2xl">
+            <h2 className="font-brand text-5xl sm:text-6xl md:text-9xl font-semibold uppercase tracking-[0.2em] mb-4 drop-shadow-2xl">
               Renoux<span className="text-[#C4A482]">.co</span>
             </h2>
             <p className="text-xs sm:text-sm md:text-lg font-medium tracking-[0.35em] text-[#E5D3C0] uppercase max-w-md leading-relaxed drop-shadow-md">

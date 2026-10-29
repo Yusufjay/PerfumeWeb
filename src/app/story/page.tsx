@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -8,7 +7,6 @@ import { motion } from "framer-motion";
 export default function StoryPage() {
   return (
     <main className="bg-[#050505] min-h-screen text-white pt-32 flex flex-col justify-between">
-      <Navbar />
 
       <div className="max-w-5xl mx-auto px-4 md:px-8 mt-12 md:mt-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center mb-32">

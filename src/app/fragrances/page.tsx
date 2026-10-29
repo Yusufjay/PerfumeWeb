@@ -1,23 +1,14 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-
-const products = [
-  { name: "Ocean Rogue", notes: "Fresh Marine, Citrus, Crisp Amberwood", originalPrice: "Rp 89.000", price: "Rp 49.000", img: "/fragrances/OR.png" },
-  { name: "Ethereal Kiss", notes: "Sandalwood, Citrus, Fruity", originalPrice: "Rp 99.000", price: "Rp 69.000", img: "/fragrances/EK.png" },
-  { name: "Luminous Dew", notes: "Woody, Patchouli, Vanilla", originalPrice: "Rp 99.000", price: "Rp 69.000", img: "/fragrances/LD.png" },
-  { name: "Noxelle", notes: "Black Pepper, Tuscan Leather, Lavender", originalPrice: "Rp 99.000", price: "Rp 69.000", img: "/fragrances/NX.png" },
-  { name: "Roughe", notes: "Clean, White Musk, Soft Amber", originalPrice: "Rp 99.000", price: "Rp 69.000", img: "/fragrances/RG.png" },
-  { name: "Velvet Noire", notes: "Dark Vanilla, Floral, Amber", originalPrice: "Rp 99.000", price: "Rp 69.000", img: "/fragrances/VN.png" },
-];
+import { products } from "@/data/products";
 
 export default function FragrancesPage() {
   return (
     <main className="bg-[#050505] min-h-screen text-white pt-32 flex flex-col justify-between">
-      <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <motion.div
@@ -40,6 +31,11 @@ export default function FragrancesPage() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: (i % 3) * 0.1, ease: [0.85, 0, 0.15, 1] }}
+              className="h-full"
+            >
+            <Link
+              href={`/fragrances/${product.slug}`}
+              id={`product-${product.slug}`}
               className="group cursor-pointer flex flex-col justify-between h-full bg-[#0a0a0a] p-4 sm:p-5 rounded-2xl border border-white/5 hover:border-[#C4A482]/30 transition-all duration-500"
             >
               <div className="relative aspect-[3/4] mb-4 sm:mb-6 overflow-hidden rounded-xl bg-[#111]">
@@ -60,6 +56,8 @@ export default function FragrancesPage() {
                   <span className="text-sm sm:text-base md:text-lg font-medium text-[#C4A482]">{product.price}</span>
                 </div>
               </div>
+              <span className="mt-4 text-[10px] sm:text-xs uppercase tracking-[0.25em] text-white/40 group-hover:text-[#C4A482] transition-colors">View Details →</span>
+            </Link>
             </motion.div>
           ))}
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence, Variants, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
@@ -43,6 +43,14 @@ const linkVars: Variants = {
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    if (latest > prev && latest > 80) setHidden(true);
+    else if (latest < prev) setHidden(false);
+  });
 
   useEffect(() => {
     if (isOpen) {
@@ -54,7 +62,12 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-[60] flex justify-between items-center px-6 py-6 md:px-12 md:py-8 mix-blend-difference text-white">
+      <motion.nav
+        initial={false}
+        animate={{ y: hidden && !isOpen ? "-110%" : "0%" }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed top-0 left-0 w-full z-[60] flex justify-between items-center px-6 py-6 md:px-12 md:py-8 mix-blend-difference text-white"
+      >
         <Link href="/" className="flex items-center gap-2.5 text-xl md:text-2xl font-light tracking-[0.3em] uppercase origin-left hover:scale-105 transition-transform duration-500">
           <Image
             src="/logo-removebg-preview.png"
@@ -63,7 +76,7 @@ export default function Navbar() {
             height={3}
             className="w-25 h-25 md:w-20 md:h-25 object-contain brightness-0 invert"
           />
-          <span>Renoux.co</span>
+          <span className="font-brand font-semibold">Renoux.co</span>
         </Link>
         <button
           onClick={() => setIsOpen(true)}
@@ -72,7 +85,7 @@ export default function Navbar() {
           <span className="uppercase text-sm tracking-[0.2em] hidden md:block mt-1">Menu</span>
           <Menu className="w-7 h-7" />
         </button>
-      </nav>
+      </motion.nav>
 
       <AnimatePresence>
         {isOpen && (
@@ -91,7 +104,7 @@ export default function Navbar() {
               <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3 text-xl md:text-2xl font-light tracking-[0.3em] uppercase text-white/80 hover:text-white transition-colors">
                 
 
-                <span>Renoux.co</span>
+                <span className="font-brand font-semibold">Renoux.co</span>
               </Link>
               <button
                 onClick={() => setIsOpen(false)}

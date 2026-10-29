@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { MoveUpRight } from "lucide-react";
@@ -14,7 +13,6 @@ const socialLinks = [
 export default function ContactPage() {
   return (
     <main className="bg-[#050505] min-h-screen text-white pt-32 flex flex-col justify-between">
-      <Navbar />
 
       <div className="max-w-4xl mx-auto px-4 md:px-8 mt-12 md:mt-24 w-full flex-1">
         <motion.div 
